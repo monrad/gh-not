@@ -64,8 +64,11 @@ type Subject struct {
 	LatestCommentUrl string `json:"latest_comment_url"`
 
 	// Enriched API fields
-	State   string `json:"state"`
-	HtmlUrl string `json:"html_url"`
+	State          string `json:"state"`
+	HtmlUrl        string `json:"html_url"`
+	Assignees      []User `json:"assignees"`
+	Reviewers      []User `json:"requested_reviewerers"`
+	ReviewersTeams []Team `json:"requested_teams"`
 }
 
 type Repository struct {
@@ -80,6 +83,11 @@ type Repository struct {
 type User struct {
 	Login string `json:"login"`
 	Type  string `json:"type"`
+}
+
+type Team struct {
+	Name string `json:"name"`
+	Id   string `json:"id"`
 }
 
 func (n Notifications) Equal(others Notifications) bool {
